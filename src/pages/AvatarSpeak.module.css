@@ -1,0 +1,200 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #050505;
+    color: white;
+    font-family: 'Inter', sans-serif;
+}
+
+.avatarCanvas {
+    flex: 1;
+    position: relative;
+    background: radial-gradient(circle at center, #1a1a2e 0%, #000000 100%);
+    overflow: hidden;
+}
+
+/* --- Step Overlay (Top Right) --- */
+.stepOverlay {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid #00F0FF;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+    padding: 24px;
+    border-radius: 16px;
+    max-width: 350px;
+    animation: slideIn 0.4s ease-out;
+    text-align: left;
+}
+
+.stepBadge {
+    display: inline-block;
+    background: rgba(0, 240, 255, 0.15);
+    color: #00F0FF;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+}
+
+.glossTitle {
+    font-size: 2.5rem;
+    margin: 0 0 10px 0;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.glossDesc {
+    font-size: 1rem;
+    color: #cccccc;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.glossMeta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: #888;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 12px;
+}
+
+/* --- Control Panel (Bottom) --- */
+.controlPanel {
+    padding: 20px 40px;
+    background: rgba(10, 10, 10, 0.95);
+    border-top: 1px solid rgba(0, 240, 255, 0.3);
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.playbackControls {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.iconBtn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.iconBtn:hover:not(:disabled) {
+    background: rgba(0, 240, 255, 0.2);
+    border-color: #00F0FF;
+    transform: scale(1.1);
+}
+
+.iconBtn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.playBtn {
+    width: 64px;
+    height: 64px;
+    background: #00F0FF;
+    color: black;
+    border: none;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+}
+
+.playBtn:hover {
+    background: white;
+    transform: scale(1.1);
+}
+
+.inputWrapper {
+    flex: 1;
+    display: flex;
+    gap: 12px;
+    max-width: 600px;
+}
+
+.textInput {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 0 20px;
+    color: white;
+    font-size: 1rem;
+    height: 50px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.textInput:focus {
+    border-color: #00F0FF;
+}
+
+.sendBtn {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #00F0FF, #0080FF);
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.sendBtn:hover:not(:disabled) {
+    transform: scale(1.05);
+}
+
+.sendBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.timeline {
+    display: flex;
+    gap: 10px;
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.5);
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.timelineItem {
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.activeItem {
+    background: rgba(0, 240, 255, 0.2);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    font-weight: bold;
+    transform: scale(1.05);
+}

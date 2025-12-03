@@ -1,0 +1,152 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.backgroundPulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 0, 85, 0.2) 0%, transparent 70%);
+    animation: pulseBg 2s infinite;
+    z-index: 0;
+}
+
+@keyframes pulseBg {
+    0% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+
+    100% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+}
+
+.content {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xl);
+    max-width: 600px;
+    width: 100%;
+}
+
+.title {
+    font-size: 3rem;
+    color: var(--color-error);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 0 0 20px rgba(255, 0, 85, 0.5);
+}
+
+.sosButton {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: rgba(255, 0, 85, 0.1);
+    border: 4px solid var(--color-error);
+    color: var(--color-error);
+    font-size: 2rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 30px rgba(255, 0, 85, 0.3);
+    position: relative;
+}
+
+.sosButton:hover {
+    background: var(--color-error);
+    color: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 0 50px rgba(255, 0, 85, 0.6);
+}
+
+.sosButtonActive {
+    animation: shake 0.5s infinite;
+    background: var(--color-error);
+    color: #fff;
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+    }
+
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
+}
+
+.statusText {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.instructions {
+    color: var(--color-text-muted);
+    background: rgba(0, 0, 0, 0.5);
+    padding: var(--spacing-md);
+    border-radius: var(--card-radius);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gestureIcon {
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-primary);
+}
