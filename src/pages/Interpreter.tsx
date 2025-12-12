@@ -96,12 +96,15 @@ const Interpreter: React.FC = () => {
             ctx.scale(-1, 1);
 
             if (results.landmarks) {
-                for (const landmarks of results.landmarks) {
-                    // 1. Draw Premium Overlay
+                // Draw all hands
+                results.landmarks.forEach(landmarks => {
                     drawCyberOverlay(ctx, landmarks);
+                });
 
-                    // 2. Process with Sign Engine
-                    const detectedSign = signEngineRef.current.processFrame(landmarks);
+                // Process only the first detected hand for sign recognition to avoid state conflict
+                if (results.landmarks.length > 0) {
+                    const primaryHand = results.landmarks[0];
+                    const detectedSign = signEngineRef.current.processFrame(primaryHand);
 
                     if (detectedSign) {
                         setCurrentWord(detectedSign);
