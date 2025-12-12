@@ -8,6 +8,49 @@ type GestureBuffer = NormalizedLandmark[][];
 const BUFFER_SIZE = 30; // Analyze last 30 frames (~1 second)
 const STABILITY_THRESHOLD = 5; // Number of frames a sign must be held to be valid
 
+// English to Marathi Mapping
+const MARATHI_MAPPING: Record<string, string> = {
+    'HELLO': 'नमस्कार',
+    'YES': 'हो',
+    'NO': 'नाही',
+    'A': 'अ',
+    'B': 'ब',
+    'C': 'क',
+    'D': 'ड',
+    'E': 'इ',
+    'F': 'फ',
+    'I': 'आय',
+    'K': 'क',
+    'L': 'ल',
+    'M': 'म',
+    'N': 'न',
+    'O': 'ओ',
+    'R': 'र',
+    'S': 'स',
+    'T': 'त',
+    'U': 'यू',
+    'V': 'व',
+    'W': 'व',
+    'X': 'क्ष',
+    'Y': 'य',
+    'VICTORY': 'विजय',
+    'I LOVE YOU': 'मी तुझ्यावर प्रेम करतो',
+    'LOOK': 'पहा',
+    'THUMBS UP': 'छान',
+    'OK': 'ठीक आहे',
+    'STOP': 'थांबा',
+    'ROCK': 'रॉक',
+    '1': '१',
+    '2': '२',
+    '3': '३',
+    '4': '४',
+    '5': '५',
+    '6': '६',
+    '7': '७',
+    '8': '८',
+    '9': '९'
+};
+
 export class SignEngine {
     private buffer: GestureBuffer = [];
     private lastSentence: string[] = [];
@@ -41,7 +84,9 @@ export class SignEngine {
             // Debounce: Don't add same word within 1 second
             if (now - this.lastWordTime > 1000) {
                 this.lastWordTime = now;
-                return this.currentPrediction;
+                const translated = this.translateToMarathi(this.currentPrediction);
+                this.lastSentence.push(translated);
+                return translated;
             }
         }
 
@@ -57,6 +102,10 @@ export class SignEngine {
 
     private analyzeStaticPose(landmarks: NormalizedLandmark[]): string | null {
         return this.classifier.classify(landmarks);
+    }
+
+    private translateToMarathi(english: string): string {
+        return MARATHI_MAPPING[english] || english;
     }
 
     public getSentence(): string {
